@@ -7,16 +7,16 @@ def test_numeric_strategy_ok():
     strategy = NumericStrategy()
 
     assert strategy.validate("5353") is not None
-    assert strategy.validate("kazuhito") is None
+    assert strategy.validate("kzht") is None
 
 
 def test_alpha_numeric_strategy_ok():
     strategy = AlphaNumericStrategy()
 
-    assert strategy.validate("kazuhito") is not None
+    assert strategy.validate("kzht") is not None
     assert strategy.validate("5353") is not None
-    assert strategy.validate("kazuhito53") is not None
-    assert strategy.validate("kazuhitoが") is None
+    assert strategy.validate("kzht53") is not None
+    assert strategy.validate("kzhtが") is None
 
 
 def test_strategy_factory_ok():
