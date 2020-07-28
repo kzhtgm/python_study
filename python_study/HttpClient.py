@@ -20,6 +20,12 @@ class Content:
     def json(self) -> dict:
         return self.__response.json()
 
+    def status_code(self) -> int:
+        return self.__response.status_code
+
+    def text(self) -> str:
+        return self.__response.text
+
 
 class HttpClient:
     @staticmethod

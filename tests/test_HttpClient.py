@@ -1,6 +1,6 @@
-import pytest
+from requests import Response
 
-from python_study.HttpClient import HttpClient
+from python_study.HttpClient import HttpClient, Content
 
 
 def test_get():
@@ -13,3 +13,20 @@ def test_get():
     assert json['fullAddress'] == "東京都千代田区千代田"
 
 
+def test_mock_requests_get(mocker):
+    response_mock: Response = mocker.Mock()
+    response_mock.status_code = 301
+    response_mock.text = "kzhtgm"
+    mocker.patch("requests.get").return_value = response_mock
+
+    actual = HttpClient.get()
+    assert actual.status_code() == 301
+    assert actual.text() == "kzhtgm"
+
+
+def test_mock_get(mocker):
+    response_mock: Response = mocker.Mock()
+    content = Content(response_mock)
+    mocker.patch.object(HttpClient, "get", return_value=content)
+    actual = HttpClient.get()
+    assert actual is content
