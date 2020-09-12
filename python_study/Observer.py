@@ -9,12 +9,12 @@ class Observer(ABC):
 
 class ObserverA(Observer):
     def observe(self):
-        print("ObserverA")
+        return "called ObserverA"
 
 
 class ObserverB(Observer):
     def observe(self):
-        print("ObserverB")
+        return "called ObserverB"
 
 
 class Publisher:
@@ -24,6 +24,8 @@ class Publisher:
         self.__observers = [ObserverA(), ObserverB()]
 
     def publish(self) -> bool:
-        for observer in self.__observers:
-            observer.observe()
-        return True
+        #     ret = []
+        #     for observer in self.__observers:
+        #         ret.append(observer.observe())
+        #     return ret
+        return [observer.observe() for observer in self.__observers]
